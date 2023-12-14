@@ -7,6 +7,7 @@ table {
 th, td {
     border: 1px solid black;
     padding: 8px;
+    min-width: 50px;
     text-align: center;
     overflow: hidden; /* Handles overflow */
     text-overflow: ellipsis; /* Displays ellipsis for overflowed text */
@@ -14,15 +15,15 @@ th, td {
 
 /* Style for the quantity column */
 td:nth-last-child(5), th:nth-last-child(5) {
-    width: 200px; /* Fixed width for quantity column */
+    width: 70px; /* Fixed width for quantity column */
     white-space: nowrap; /* Prevents wrapping in quantity column */
 }
 td:nth-last-child(4), th:nth-last-child(4) {
-    width: 200px; /* Fixed width for quantity column */
+    width: 60px; /* Fixed width for quantity column */
     white-space: nowrap; /* Prevents wrapping in quantity column */
 }
 td:nth-last-child(3), th:nth-last-child(3) {
-    width: 100px; /* Fixed width for quantity column */
+    width: 60px; /* Fixed width for quantity column */
     white-space: nowrap; /* Prevents wrapping in quantity column */
 }
 

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const headers = ['Nombre', 'Unitario(€)', 'Total(€)', 'Cantidad(ud)', 'Acciones', 'Eliminar'];
+const headers = ['Nombre', '€/ud', 'Total(€)', 'Uds', 'Acciones', 'Eliminar'];
     
 
 function addRowOrColumn(isRow) {
