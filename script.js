@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const headers = ['Nombre', '€/ud', 'Total(€)', 'Uds', 'Acciones', 'Eliminar'];
+const headers = ['Nombre', '€/ud', 'Total(€)', 'Uds', 'Acciones', ''];
     
-
 function addRowOrColumn(isRow) {
     const table = document.getElementById('dataTable');
     if (isRow) {
@@ -24,6 +23,10 @@ function addRowOrColumn(isRow) {
         const row = table.insertRow(rowCount);
         for (let i = 0; i < headers.length - 3; i++) {
             let cell = row.insertCell();
+            if(i > 0){
+                cell.setAttribute('inputmode','decimal')
+            }
+            
             cell.setAttribute('contenteditable' , 'true')
             cell.addEventListener('input', (e) => updateRowTotal(e.target));
         }
@@ -32,7 +35,9 @@ function addRowOrColumn(isRow) {
     } else {
         Array.from(table.rows).forEach((row, index) => {
             let cell = row.insertCell(1);
-            cell.innerHTML = index === 0 ? '<b>Nueva Columna</b> <button onclick="deleteColumn(this)">X</button>' : 'Nombre';
+            cell.setAttribute('contenteditable' , 'true')
+            cell.addEventListener('input', (e) => updateRowTotal(e.target));
+            cell.innerHTML = index === 0 ? '<b>Nueva Columna</b> <button onclick="deleteColumn(this)">X</button>' : '';
         });
     }
     storeTableData();
@@ -41,7 +46,8 @@ function addRowOrColumn(isRow) {
 function addQuantityAndButtons(row, rowCount, initialValue = 0) {
     let quantityCell = row.insertCell();
     quantityCell.innerHTML = initialValue;
-    quantityCell.contentEditable = true;
+    quantityCell.setAttribute('contenteditable' , 'true')
+    quantityCell.setAttribute('inputmode','decimal')
     quantityCell.addEventListener('input', (e) => updateRowTotal(e.target));
     quantityCell.addEventListener('keypress', enforceNumericInput);
 
@@ -52,7 +58,7 @@ function addQuantityAndButtons(row, rowCount, initialValue = 0) {
 
 function addDeleteRowButton(row) {
     let deleteCell = row.insertCell();
-    deleteCell.innerHTML = '<button onclick="deleteRow(this)">Eliminar Fila</button>';
+    deleteCell.innerHTML = '<button onclick="deleteRow(this)">X</button>';
 }
 
 function enforceNumericInput(event) {
@@ -134,8 +140,12 @@ function loadTable(data) {
     table.innerHTML = '<tr>' + storedHeaders.map(header => `<th>${header}</th>`).join('') + '</tr>';
     data.forEach((rowData, rowIndex) => {
         const row = table.insertRow();
-        rowData.slice(0, -3).forEach(cellData => {
+        rowData.slice(0, -3).forEach((cellData, i) => {
             const cell = row.insertCell();
+            if(i > headers.length - 6){
+                cell.setAttribute('inputmode','decimal')
+            }
+            
             cell.setAttribute('contenteditable' , 'true')
             cell.addEventListener('input', (e) => updateRowTotal(e.target));
             cell.innerHTML = cellData;
