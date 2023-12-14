@@ -1,0 +1,50 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures fixed layout */
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    overflow: hidden; /* Handles overflow */
+    text-overflow: ellipsis; /* Displays ellipsis for overflowed text */
+}
+
+/* Style for the quantity column */
+td:nth-last-child(5), th:nth-last-child(5) {
+    width: 200px; /* Fixed width for quantity column */
+    white-space: nowrap; /* Prevents wrapping in quantity column */
+}
+td:nth-last-child(4), th:nth-last-child(4) {
+    width: 200px; /* Fixed width for quantity column */
+    white-space: nowrap; /* Prevents wrapping in quantity column */
+}
+td:nth-last-child(3), th:nth-last-child(3) {
+    width: 100px; /* Fixed width for quantity column */
+    white-space: nowrap; /* Prevents wrapping in quantity column */
+}
+
+td:nth-last-child(2), th:nth-last-child(2) {
+    width: 100px; /* Fixed width for quantity column */
+    white-space: nowrap; /* Prevents wrapping in quantity column */
+}
+
+/* Style for the action (delete) column */
+td:last-child, th:last-child {
+    width: 100px; /* Fixed width for action column */
+    white-space: nowrap; /* Prevents wrapping in action column */
+}
+
+/* General column style */
+th:not(:last-child):not(:nth-last-child(2)),
+td:not(:last-child):not(:nth-last-child(2)) {
+    width: calc((100% - 200px) / (number_of_columns - 2)); /* Adjust width evenly */
+}
+
+button {
+    padding: 5px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+}
